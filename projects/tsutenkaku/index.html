@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>tsutenkaku : Mecha-Mozilla</title>
+    <link rel="shortcut icon" href="images/favicon.ico"/>
+    <link rel="stylesheet" href="../css/style.css" type="text/css"/>
+    <link rel="stylesheet" href="http://mplus-fonts.sourceforge.jp/webfonts/mplus_webfonts.css" type="text/css" />
+</head>
+<body>
+
+<div id="container">
+    <div id="header"><a href="index.en.html">ENGLISH</a></div>
+    <div id="last-updated">last updated: 2012/07/12 created: 2012/07/12</div>
+    <div id="mecha-mozilla">
+        <a href="http://www.mecha-mozilla.org/">
+            <div id="mecha-mozilla-logo"></div>
+        </a>
+    </div>
+    <div>
+        <div id="title">tsutenkaku</div>
+    </div>
+    <ul>
+        <li>
+            <div class="title">about</div>
+            <div class="description">
+            <p>
+ウェブブラウザでも情報を見ることはできますが、同じ情報でも実世界に取り出し表現することで、また違った感覚を得ることはできそうな気がします。tsutenkaku は、通天閣の写真に組み込まれたマルチカラーのLEDから、閲覧中のウェブページの地域性(大阪限定)と、そこの明日のお天気を緩やかに知覚するコトができるアプリケーションです。ウェブ内情報を見るという意味では、とてもシンプルですが、一つのウェブブラウザであると言えるのかもしれません。
+            </p>
+                <div class="thumbnail">
+<video width="500" src="tsutenkaku.theora.ogv" poster="thumbnail.jpg" controls></video>
+                </div>
+            </div>
+        </li>
+        <li>
+            <div class="title">implementation</div>
+            <div class="description">
+<p>
+ハード面の実装はとてもシンプルです。お気に入りの通天閣の写真(CCライセンスが付いているのが良いです)にマルチカラーの LED を裏側から挿し込みます。マルチカラーLED には４つの端子が出ておりますが、ここで利用した LED では、一つはグラウンド、あとの３つはそれぞれ RGB に割り当てられていました。これらをワニ口クリップでくわえ、抵抗を通し、Arduino の然るべき PIN に接続します。
+<br/>
+ソフトウェアは <a href="../arduino.js/">arduino.js</a> を利用したアドオンとして実装しました。LED 点灯のスイッチは、閲覧中のウェブページの URL に osaka が入っているか否かで切り替えています。また LED の色が明日の天気予報になっていますが、天気予報は Yahoo Japan さんのお天気RSSを取得し決定しています。ちなみに本来の通天閣の色は 白→晴、橙→曇、青→雨 となっており、晴時々曇ですと、上段が白、下段が橙に光ります。本アプリでは、緑→晴、赤→曇、青→雨とし、時間軸でその色を変化させるコトにしました。
+</p>
+            </div>
+        </li>
+        <li>
+            <div class="title">source codes</div>
+            <div class="description">
+<a href="https://github.com/dadaa/tsutenkaku">ソースコード</a>
+            </div>
+        </li>
+        <li>
+            <div class="title">members</div>
+            <div class="description">
+            <div><a href="http://www.mecha-mozilla.org/">Mozilla Japan : 赤塚</a></div>
+            </div>
+            <br/>
+            <div>通天閣の写真は以下を利用させて頂きました</div>
+            <div class="description">
+            <div><a href="http://www.flickr.com/photos/heididorf/6689152567/">http://www.flickr.com/photos/heididorf/6689152567/</a></div>
+            </div>
+        </li>
+    <div id="footer">
+    Copyright © 2012 mecha-mozilla.org All rights reserved.
+    </div>
+</div>
+
+</body>
+</html>
