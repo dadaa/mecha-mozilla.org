@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>weburette : Mecha-Mozilla</title>
+    <link rel="shortcut icon" href="images/favicon.ico"/>
+    <link rel="stylesheet" href="../css/style.css" type="text/css"/>
+    <link rel="stylesheet" href="http://mplus-fonts.sourceforge.jp/webfonts/mplus_webfonts.css" type="text/css" />
+</head>
+<body class="en">
+
+
+<div id="container">
+    <div id="header"><a href="index.html">JAPANESE</a></div>
+    <div id="last-updated">last updated: 2012/07/12 created: 2012/05/25</div>
+    <div id="mecha-mozilla">
+        <a href="http://www.mecha-mozilla.org/index.en.html">
+            <div id="mecha-mozilla-logo"></div>
+        </a>
+    </div>
+    <div>
+        <div id="title">weburette</div>
+    </div>
+    <ul>
+        <li>
+            <div class="title">about</div>
+            <div class="description">
+            <p>
+Viewers are not usually aware that the web browser undergoes various processes when they open a single web page. For example, there may be many transmissions if the website uses as many external resources, or the website may be specified to store cookies. Depending on the website's structure, there may also be processes not specified by the website, such as the garbage collection or  re-rendering. Although we usually visualize these processes to understand the structure of a website, this project approaches from senses other than sight.            </p>
+            <p>
+The weburette brews a cocktail by mixing drops of different liquors where each liquor represents a specific process of the browser. Because the processes of each web page differently, each cocktail will be brewed differently as well, and have its own original taste and aroma. Therefore we can sense not only the visual representations of the web page, but also the taste and aroma. This kind of shift in cognition may open doors to discover new values of a web page.            </p>
+                <div class="thumbnail">
+<video width="500" src="weburette.theora.ogv" poster="thumbnail.jpg" controls></video>
+                </div>
+            </div>
+        </li>
+        <li>
+            <div class="title">implementation</div>
+            <div class="description">
+<p>
+As mentioned above, the browser undergoes a variety of processes when opening a website. <a href="http://mozilla.jp/firefox/">Firefox</a> has a service that enables to observe the events that initiate these processes, called <a href="https://developer.mozilla.org/en/Observer_Notifications">Observer Notifications</a>. The weburette categorizes these events, for example into transmission-related or cookie-related, and sends a signal to a pin of Arduino that represents each category.
+<br/>
+Tubes come out from bottles of liquor, leading to a solenoid valve. The solenoid valve is signaled by the Arduino to open or close. When the valve is open, a drop of liqour will flow into a glass located on the end of the tube.
+</p>
+<p style="text-align: center;">
+<img src="solenoid_valve.jpg" />
+<br/>solenoid valve
+</p>
+<p style="text-align: center;">
+<img src="system_from_bottom.jpg" />
+<br/>view from below the weburette
+</p>
+            </div>
+        </li>
+        <li>
+            <div class="title">source codes</div>
+            <div class="description">
+<a href="https://github.com/dadaa/weburette">source code</a>
+            </div>
+        </li>
+        <li>
+            <div class="title">members</div>
+            <div class="description">
+            <div><a href="http://tototomoki.com/top/">Tomoki Hiramoto, para//site</a></div>
+            <div><a href="http://saorikanda.com/">Shiori Kanda, Monodukuri-kei Joshi</a></div>
+            <div><a href="http://jecy.main.jp/">Jecy, Free-lanced Illustrator</a></div>
+            <div><a href="http://www.mecha-mozilla.org/">Daisuke Akatsuka, Mozilla Japan</a></div>
+            </div>
+
+            <div class="title">special thanks!</div>
+            <div class="description">
+            <div><a href="http://atocmoc.com/">Tomohiro Akagawa, Atelier OMOYA</a></div>
+            </div>
+        </li>
+    <div id="footer">
+    Copyright © 2012 mecha-mozilla.org All rights reserved.
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>weburette : Mecha-Mozilla</title>
+    <link rel="shortcut icon" href="images/favicon.ico"/>
+    <link rel="stylesheet" href="../css/style.css" type="text/css"/>
+    <link rel="stylesheet" href="http://mplus-fonts.sourceforge.jp/webfonts/mplus_webfonts.css" type="text/css" />
+</head>
+<body>
+
+
+<div id="container">
+    <div id="header"><a href="index.en.html">ENGLISH</a></div>
+    <div id="last-updated">last updated: 2012/07/12 created: 2012/04/29</div>
+    <div id="mecha-mozilla">
+        <a href="http://www.mecha-mozilla.org/">
+            <div id="mecha-mozilla-logo"></div>
+        </a>
+    </div>
+    <div>
+        <div id="title">weburette</div>
+    </div>
+    <ul>
+        <li>
+            <div class="title">about</div>
+            <div class="description">
+            <p>
+ウェブサイトを一つ開くと、閲覧者はあまり意識していないところでウェブブラウザはさまざまな処理をしてそのページを構成します。たとえばそのウェブサイトが外部リソースを多用していれば通信がその分発生しますし、クッキーを保持するように指定されることもあります。またサイト側の指定ではありませんが、サイトの構成によってガベージコレクションや再描画などの処理を行います。こういった処理を視覚化すればウェブページが構成されますが、ここでは視覚以外での構成を試みます。
+            </p>
+            <p>
+weburette は、ウェブブラウザの処理内容に応じたお酒を１滴ずつ落とし、それが混じりあうことでカクテルができあがります。ウェブページによって、その処理内容が異なるためにお酒の混合比も変化するので、そのウェブページならではの味と香りを持ち合わせた独特のカクテルになります。つまり、ウェブページを見るだけでなく、香りと味で楽しむこともできるようになるのです。このような感覚の変換は、もしかするとウェブページに新しい価値を見いだす方法の一つなのかもしれません。
+            </p>
+                <div class="thumbnail">
+<video width="500" src="weburette.theora.ogv" poster="thumbnail.jpg" controls></video>
+                </div>
+            </div>
+        </li>
+        <li>
+            <div class="title">implementation</div>
+            <div class="description">
+<p>
+前述通り、ウェブサイトを開くとウェブブラウザはさまざまな処理を行います。<a href="http://mozilla.jp/firefox/">Firefox</a> には、<a href="https://developer.mozilla.org/en/Observer_Notifications">Observer Notifications</a>という、こうした処理が発生させるイベントを拾うサービスが備わっています。weburette では、これらのイベントを通信関係やクッキー関係などにカテゴライズし、それぞれに応じた Arduino のピンに電気信号を送ります。
+<br/>お酒の入ったボトルにはチューブが差し込まれ、その先にソレノイドバルブが備わっています。ソレノイドバルブは、Arduino の信号を受け取って弁を開閉します。お酒はその開放時に自重によって落ち流れ、グラスに注がれます。
+</p>
+<p style="text-align: center;">
+<img src="solenoid_valve.jpg" />
+<br/>ソレノイドバルブ
+</p>
+<p style="text-align: center;">
+<img src="system_from_bottom.jpg" />
+<br/>筐体を下側から撮影
+</p>
+            </div>
+        </li>
+        <li>
+            <div class="title">source codes</div>
+            <div class="description">
+<a href="https://github.com/dadaa/weburette">ソースコード</a>
+            </div>
+        </li>
+        <li>
+            <div class="title">members</div>
+            <div class="description">
+            <div><a href="http://tototomoki.com/top/">para//site   : 平本知樹</a></div>
+            <div><a href="http://saorikanda.com/">ものづくり系女子  : 神田沙織</a></div>
+            <div><a href="http://jecy.main.jp/">イラストレータ  : Jecy</a></div>
+            <div><a href="http://www.mecha-mozilla.org/">Mozilla Japan : 赤塚</a></div>
+            </div>
+
+            <div class="title">special thanks!</div>
+            <div class="description">
+            <div><a href="http://atocmoc.com/">アトリエオモヤ : 赤川智洋氏</a></div>
+            </div>
+        </li>
+    <div id="footer">
+    Copyright © 2012 mecha-mozilla.org All rights reserved.
+    </div>
+</div>
+
+</body>
+</html>
