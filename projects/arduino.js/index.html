@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>arduino.js : Mecha-Mozilla</title>
+    <link rel="shortcut icon" href="images/favicon.ico"/>
+    <link rel="stylesheet" href="../css/style.css" type="text/css"/>
+    <link rel="stylesheet" href="http://mplus-fonts.sourceforge.jp/webfonts/mplus_webfonts.css" type="text/css" />
+</head>
+<body>
+
+
+<div id="container">
+    <div id="header"><a href="index.en.html">ENGLISH</a></div>
+    <div id="last-updated">last updated: 2012/11/23 created: 2012/04/29</div>
+    <div id="mecha-mozilla">
+        <a href="http://www.mecha-mozilla.org/">
+            <div id="mecha-mozilla-logo"></div>
+        </a>
+    </div>
+    <div>
+        <div id="title">arduino.js</div>
+    </div>
+    <ul>
+        <li>
+            <div class="title">about</div>
+            <div class="description">
+arduino.js とは、JavaScript によって <a href="http://www.arduino.cc/">Arduino</a> を制御することができる <a href="http://mozilla.jp/firefox/">Firefox</a> の <a href="https://addons.mozilla.jp/firefox/">Add-on</a> 用ライブラリです。
+このライブラリを取り入れてご自身の Add-on から制御することが可能です。
+<br/>また、ウェブページ用 Add-on <a href="arduino-js.xpi">arduino.js for webpages</a> をインストールすればウェブページからの制御も可能となります。
+                <div class="thumbnail">
+<video src="arduinojsLED.theora.ogv" poster="thumbnail400x300.png" controls></video>
+<div>LED を Blink させるサンプルムービー。ソースコードは<a href="https://github.com/dadaa/arduino.js/blob/master/samples/webpages/html/blink.html">こちら</a></div>
+                </div>
+            </div>
+        </li>
+        <li>
+            <div class="title">setup Arduino</div>
+            <div class="description">
+本ライブラリを利用するために、まず、Arduino 内部にプログラムを書き込みます。<a href="https://github.com/dadaa/arduino.js/blob/master/core/sketch/CommandServer/CommandServer.ino">CommandServer.ino</a>をダウンロードし、Arduino にアップロードしてください。
+            </div>
+        </li>
+        <li>
+            <div class="title">usage for add-on</div>
+            <div class="description">
+            <ul>
+                <li>
+                    <div class="title">setup</div>
+                    <div class="description">
+本ライブラリは Firefox の Add-on 開発ツールである <a href="https://addons.mozilla.org/en-US/developers/docs/sdk/latest/">Add-on SDK</a> での利用を想定して書かれています。ご自身の Add-on 開発ディレクトリ内の data ディレクトリに <a href="https://github.com/dadaa/arduino.js/blob/master/core/addon/arduino.js/data/">ここにあるネイティブファイル全て</a>をコピーしてください。続けて、lib ディレクトリに <a href="https://github.com/dadaa/arduino.js/blob/master/core/addon/arduino.js/lib/arduino.js">arduino.js</a> をコピーしてください。
+                    </div>
+                </li>
+                <li>
+                    <div class="title">usage</div>
+                    <div class="description">
+利用サンプルです。main.js などに書いておくと良いかと思います。
+                        <pre><code>
+//arduino モジュールをロード
+var arduino = require("arduino.js");
+//arduino をオープン。引数はデバイスポートです。
+arduino.open("/dev/cu.usbmodemfd121");//mac はこんな感じ
+//arduino.open("COM3");//windows はこんな感じ
+//8番ピンを出力に設定 (true: OUTPUT, false: INPUT)
+arduino.pinMode(8, true);
+//8番ピンに出力 min:0 - max:255
+arduino.analogWrite(8, 255);
+                        </code></pre>
+                    </div>
+                </li>
+            </ul>
+            </div>
+        </li>
+        <li>
+            <div class="title">usage for web page</div>
+            <div class="description">
+            <ul>
+                <li>
+                    <div class="title">setup</div>
+                    <div class="description">
+<a href="arduino-js.xpi">arduino.js for webpages</a> をインストールしてください。
+                    </div>
+                </li>
+                <li>
+                    <div class="title">usage</div>
+                    <div class="description">
+利用サンプルです。
+                        <pre><code>
+//arduino モジュールが備わっているかを検査する
+if (document.arduino) {
+    var arduino = document.arduino;
+    //arduino をオープン。引数はデバイスポートです。
+    arduino.open("/dev/cu.usbmodemfd121");
+    //8番ピンを出力に設定 (true: OUTPUT, false: INPUT)
+    arduino.pinMode(8, true);
+    //8番ピンに出力 min:0 - max:255
+    arduino.analogWrite(8, 255);
+}
+                        </code></pre>
+                    </div>
+                </li>
+            </ul>
+            </div>
+        </li>
+        <li>
+            <div class="title">api</div>
+            <div class="description">
+            <dl id="methods">
+                <dt class="method">open(devicePortName)</dt>
+                <dd>
+                <div class="description">
+Arduino との接続を開始します。引数の devicePortName は Arduino が接続されているポートです。
+                </div>
+                <div class="parameter">
+                <dl>
+                    <dt>パラメータ</dt>
+                    <dd>devicePortName: Arduino が接続されているポート</dd>
+                <dl>
+                </div>
+                <div class="example">
+<pre><code>arduino.open("/dev/cu.usbmodemfd121");</code></pre>
+                </div>
+                </dd>
+
+                <dt class="method">pinMode(pin, isOutputMode)</dt>
+                <dd>
+                <div class="description">
+PINの入出力の設定をします。
+                </div>
+                <div class="parameter">
+                <dl>
+                    <dt>パラメータ</dt>
+                    <dd>pin: 入出力を設定するPIN番号</dd>
+                    <dd>isOutputMode: true:出力 false:入力</dd>
+                <dl>
+                </div>
+                <div class="example">
+<pre><code>arduino.pinMode(8, true);</code></pre>
+                </div>
+                </dd>
+
+                <dt class="method">analogWrite(pin, value)</dt>
+                <dd>
+                <div class="description">
+指定したPINにアナログ信号を送ります。最小値は0、最大値は255です。
+                </div>
+                <div class="parameter">
+                <dl>
+                    <dt>パラメータ</dt>
+                    <dd>pin: PIN番号</dd>
+                    <dd>value: アナログ信号(min:0 - max:255)</dd>
+                <dl>
+                </div>
+                <div class="example">
+<pre><code>arduino.analogWrite(8, 255);</code></pre>
+                </div>
+                </dd>
+
+                <dt class="method">analogRead(pin)</dt>
+                <dd>
+                <div class="description">
+指定したPINのアナログ信号を読み取ります。
+                </div>
+                <div class="parameter">
+                <dl>
+                    <dt>パラメータ</dt>
+                    <dd>pin: PIN番号</dd>
+                <dl>
+                </div>
+                <div class="example">
+<pre><code>var value = arduino.analogRead(8);</code></pre>
+                </div>
+                </dd>
+
+                <dt class="method">digitalWrite(pin, value)</dt>
+                <dd>
+                <div class="description">
+指定したPINにデジタル信号を送ります。
+                </div>
+                <div class="parameter">
+                <dl>
+                    <dt>パラメータ</dt>
+                    <dd>pin: PIN番号</dd>
+                    <dd>value: デジタル信号(0 or 1)</dd>
+                <dl>
+                </div>
+                <div class="example">
+<pre><code>arduino.digitalWrite(8, 1);</code></pre>
+                </div>
+                </dd>
+
+                <dt class="method">digitalRead(pin)</dt>
+                <dd>
+                <div class="description">
+指定したPINのデジタル信号を読み取ります。
+                </div>
+                <div class="parameter">
+                <dl>
+                    <dt>パラメータ</dt>
+                    <dd>pin: PIN番号</dd>
+                <dl>
+                </div>
+                <div class="example">
+<pre><code>var value = arduino.digitalRead(8);</code></pre>
+                </div>
+                </dd>
+
+                <dt class="method">pulse(pin, ontime, offtime)</dt>
+                <dd>
+                <div class="description">
+指定したPINにパルス信号を送ります。引数のontime(microseconds)時間分だけデジタル信号をオン( 1 )に、offtime時間分をデジタル信号をオフ( 0 )にするパルスが生成されます。また、ここで送られた信号は、次の指定があるまで同じパルスが連続的に送られるようになり、サーボなどの制御に利用できます。
+                </div>
+                <div class="parameter">
+                <dl>
+                    <dt>パラメータ</dt>
+                    <dd>pin: PIN番号</dd>
+                    <dd>ontime: デジタル信号オンの継続時間</dd>
+                    <dd>offtime: デジタル信号オフの継続時間</dd>
+                <dl>
+                </div>
+                <div class="example">
+<pre><code>arduino.pulse(8, 1500, 18500);</code></pre>
+サーボのサンプルは<a href="https://github.com/dadaa/arduino.js/blob/master/samples/webpages/html/servo.html">こちら</a>にもあります。
+                </div>
+                </dd>
+
+                <dt class="method">close()</dt>
+                <dd>
+                <div class="description">
+Arduino との接続を終了します。
+                </div>
+                <div class="parameter">
+                <dl>
+                    <dt>パラメータ</dt>
+                    <dd>ありません</dd>
+                <dl>
+                </div>
+                <div class="example">
+<pre><code>arduino.close();</code></pre>
+                </div>
+                </dd>
+            </dl>
+            </div>
+        </li>
+        <li>
+            <div class="title">implementation</div>
+            <div class="description">
+実装を簡単に説明します。Arduino 内部にはシリアル通信で送られてきた文字列をコマンドとして解釈・実行するプログラムが入っています。PC からのコマンド送信およびアナログ値などのデータ受信は C で書いたライブラリが担い、Cライブラリと Firefox のやりとりは <a href="https://wiki.mozilla.org/JSctypes">js-ctypes</a> を介して行われ、再利用がしやすいように Add-on として作成しています。
+こうすることで、Add-on 上の JavaScript で直接 Arduino を制御することが可能となります。ウェブページ用アドオンでは、閲覧中の HTML document の内部に、この Addon へアクセス可能なオブジェクトを入れこむことでウェブページから制御することもまた可能となります。これまでブラウザ内の表現が主であったウェブコンテンツの作り手は、今後、ブラウザ外での表現も視野に入れることなどもあり得るのかもしれません。  
+            </div>
+        </li>
+        <li>
+            <div class="title">source codes</div>
+            <div class="description">
+<a href="https://github.com/dadaa/arduino.js">https://github.com/dadaa/arduino.js</a>
+            </div>
+        </li>
+        <li>
+            <div class="title">members</div>
+            <div class="description">
+            <div><a href="http://www.mecha-mozilla.org/">Mozilla Japan : 赤塚</a></div>
+            <div class="title">special thanks!</div>
+            <div class="description">
+            <div><a href="http://rayflood.org/diary-temp/">hATrayflood氏</a>：Windows版を作ってくださいました！どうもありがとうございます！</div>
+            </div>
+        </li>
+            </div>
+    </ul>
+    <div id="footer">
+    Copyright © 2012 mecha-mozilla.org All rights reserved.
+    </div>
+</div>
+
+</body>
+</html>

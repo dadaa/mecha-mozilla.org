@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>arduino.js : Mecha-Mozilla</title>
+    <link rel="shortcut icon" href="images/favicon.ico"/>
+    <link rel="stylesheet" href="../css/style.css" type="text/css"/>
+    <link rel="stylesheet" href="http://mplus-fonts.sourceforge.jp/webfonts/mplus_webfonts.css" type="text/css" />
+</head>
+<body class="en">
+
+
+<div id="container">
+    <div id="header"><a href="index.html">JAPANESE</a></div>
+    <div id="last-updated">last updated: 2012/11/23 created: 2012/05/25</div>
+    <div id="mecha-mozilla">
+        <a href="http://www.mecha-mozilla.org/index.en.html">
+            <div id="mecha-mozilla-logo"></div>
+        </a>
+    </div>
+    <div>
+        <div id="title">arduino.js</div>
+    </div>
+    <ul>
+        <li>
+            <div class="title">about</div>
+            <div class="description">
+arduino.js is a library for Add-ons on Firefox that enables to control Arduino with Javascript. Now you can control Arduino from your own Add-on by installing this library.
+<br/>
+In addition, you can also control Arduino from a webpage by installing <a href="arduino-js.xpi">arduino.js for webpages</a>.
+                <div class="thumbnail">
+<video src="arduinojsLED.theora.ogv" poster="thumbnail400x300.png" controls></video>
+<div>A sample movie which makes to blink LED. Source code is <a href="https://github.com/dadaa/arduino.js/blob/master/samples/webpages/html/blink.html">here</a></div>
+                </div>
+            </div>
+        </li>
+        <li>
+            <div class="title">setup Arduino</div>
+            <div class="description">
+To use this library, first write a program inside the Arduino.
+Please dowload <a href="https://github.com/dadaa/arduino.js/blob/master/core/sketch/CommandServer/CommandServer.ino">CommandServer.ino</a>, and upload it in Arduino.
+            </div>
+        </li>
+        <li>
+            <div class="title">usage for add-on</div>
+            <div class="description">
+            <ul>
+                <li>
+                    <div class="title">setup</div>
+                    <div class="description">
+This library is written for using with the developer tool <a href="https://addons.mozilla.org/en-US/developers/docs/sdk/latest/">Add-on SDK</a> for Firefox. Please copy <a href="https://github.com/dadaa/arduino.js/blob/master/core/addon/arduino.js/data/">all files in here</a>(currently for Mac OSX , Windowa) into the data directory inside the Add-on developer directory, and <a href="https://github.com/dadaa/arduino.js/blob/master/core/addon/arduino.js/lib/arduino.js">arduino.js</a> into the lib directory.
+                    </div>
+                </li>
+                <li>
+                    <div class="title">usage</div>
+                    <div class="description">
+Below is a sample. You can save it as main.js.
+                        <pre><code>
+//Load the arduino module
+var arduino = require("arduino.js");
+//Open arduino. Argument is device port.
+arduino.open("/dev/cu.usbmodemfd121");//mac example
+//arduino.open("COM3");//windows example
+//Set PIN no. 8 as output.(true: OUTPUT, false: INPUT)
+arduino.pinMode(8, true);
+//Output to PIN no.8. min:0 - max:255
+arduino.analogWrite(8, 255);
+                        </code></pre>
+                    </div>
+                </li>
+            </ul>
+            </div>
+        </li>
+        <li>
+            <div class="title">usage for web page</div>
+            <div class="description">
+            <ul>
+                <li>
+                    <div class="title">setup</div>
+                    <div class="description">
+Please install <a href="arduino-js.xpi">arduino.js for webpages</a>.
+                    </div>
+                </li>
+                <li>
+                    <div class="title">usage</div>
+                    <div class="description">
+Below is a sample.
+                        <pre><code>
+//Check if arduino module is ready.
+if (document.arduino) {
+    var arduino = document.arduino;
+    //Open arduino. Argument is device port.
+    arduino.open("/dev/cu.usbmodemfd121");
+    //Set PIN no. 8 as output. (true: OUTPUT, false: INPUT)
+    arduino.pinMode(8, true);
+    //Output to PIN no.8. min:0 - max:255
+    arduino.analogWrite(8, 255);
+}
+                        </code></pre>
+                    </div>
+                </li>
+            </ul>
+            </div>
+        </li>
+        <li>
+            <div class="title">api</div>
+            <div class="description">
+            <dl id="methods">
+                <dt class="method">open(devicePortName)</dt>
+                <dd>
+                <div class="description">
+Connects the Arduino. The argument: devicePortName is a port that the Arduino connects to.
+                </div>
+                <div class="parameter">
+                <dl>
+                    <dt>parameters</dt>
+                    <dd>devicePortName: Port which is connected to Arduino</dd>
+                <dl>
+                </div>
+                <div class="example">
+<pre><code>arduino.open("/dev/cu.usbmodemfd121");</code></pre>
+                </div>
+                </dd>
+
+                <dt class="method">pinMode(pin, isOutputMode)</dt>
+                <dd>
+                <div class="description">
+Specifies the input/output.
+                </div>
+                <div class="parameter">
+                <dl>
+                    <dt>parameters</dt>
+                    <dd>pin: the PIN number that specifies the input/output.</dd>
+                    <dd>isOutputMode: true:output, false:input</dd>
+                <dl>
+                </div>
+                <div class="example">
+<pre><code>arduino.pinMode(8, true);</code></pre>
+                </div>
+                </dd>
+
+                <dt class="method">analogWrite(pin, value)</dt>
+                <dd>
+                <div class="description">
+Sends an analog signal to the specified PIN. The minimum value is 0, maximum is 255.
+                </div>
+                <div class="parameter">
+                <dl>
+                    <dt>parameters</dt>
+                    <dd>pin: PIN number</dd>
+                    <dd>value: analog signal(min:0 - max:255)</dd>
+                <dl>
+                </div>
+                <div class="example">
+<pre><code>arduino.analogWrite(8, 255);</code></pre>
+                </div>
+                </dd>
+
+                <dt class="method">analogRead(pin)</dt>
+                <dd>
+                <div class="description">
+Reads the analog signal of the specified PIN.
+                </div>
+                <div class="parameter">
+                <dl>
+                    <dt>parameters</dt>
+                    <dd>pin: PIN number</dd>
+                <dl>
+                </div>
+                <div class="example">
+<pre><code>var value = arduino.analogRead(8);</code></pre>
+                </div>
+                </dd>
+
+                <dt class="method">digitalWrite(pin, value)</dt>
+                <dd>
+                <div class="description">
+Sends a digital signal to the specified PIN.
+                </div>
+                <div class="parameter">
+                <dl>
+                    <dt>parameters</dt>
+                    <dd>pin: PIN number</dd>
+                    <dd>value: digital signal(0 or 1)</dd>
+                <dl>
+                </div>
+                <div class="example">
+<pre><code>arduino.digitalWrite(8, 1);</code></pre>
+                </div>
+                </dd>
+
+                <dt class="method">digitalRead(pin)</dt>
+                <dd>
+                <div class="description">
+Reads the digital signal of the specified PIN.
+                </div>
+                <div class="parameter">
+                <dl>
+                    <dt>parameters</dt>
+                    <dd>pin: PIN number</dd>
+                <dl>
+                </div>
+                <div class="example">
+<pre><code>var value = arduino.digitalRead(8);</code></pre>
+                </div>
+                </dd>
+
+                <dt class="method">pulse(pin, ontime, offtime)</dt>
+                <dd>
+                <div class="description">
+Sends a pulse signal to the specified PIN. Sends a pulse signal to turn on(1) the digital signal according to the ontime(microseconds) of the argument, and turn off(0) the digital signal according to the offtime. In addition, pulse signals will be sent repeatedly until the next is specified, enabling to control hardware such as a servo.
+                </div>
+                <div class="parameter">
+                <dl>
+                    <dt>parameters</dt>
+                    <dd>pin: PIN number</dd>
+                    <dd>ontime:  run time when the digital signal is on</dd>
+                    <dd>offtime:  run time when the digital signal is off</dd>
+                <dl>
+                </div>
+                <div class="example">
+<pre><code>arduino.pulse(8, 1500, 18500);</code></pre>
+A sample with a servo can be viewed <a href="https://github.com/dadaa/arduino.js/blob/master/samples/webpages/html/servo.html">here</a>.
+                </div>
+                </dd>
+
+                <dt class="method">close()</dt>
+                <dd>
+                <div class="description">
+Ends connection with Arduino.
+                </div>
+                <div class="parameter">
+                <dl>
+                    <dt>parameters</dt>
+                    <dd>none</dd>
+                <dl>
+                </div>
+                <div class="example">
+<pre><code>arduino.close();</code></pre>
+                </div>
+                </dd>
+            </dl>
+            </div>
+        </li>
+        <li>
+            <div class="title">implementation</div>
+            <div class="description">
+It explains how it runs simply. There is a program in Arduino that reads and runs strings sent by serial transmission. Data receptions such as command transmissions and analog values from the PC is handled by a library written in C, where it communicates with Firefox through <a href="https://wiki.mozilla.org/JSctypes">js-ctypes</a>, and creates this as an Add-on to allowing reuse. This enables to directly control Arduino with JavaScript on an Add-on. For the Webpage Add-on, you can control the Arduino from a webpage by inserting an object accessible to the Add-on inside the HTML document you are viewing. Creators who have expressed themselves particularly inside the Web can now possibly consider expressing outside the Web.
+            </div>
+        </li>
+        <li>
+            <div class="title">source codes</div>
+            <div class="description">
+<a href="https://github.com/dadaa/arduino.js">https://github.com/dadaa/arduino.js</a>
+            </div>
+        </li>
+        <li>
+            <div class="title">members</div>
+            <div class="description">
+            <div><a href="http://www.mecha-mozilla.org/">Daisuke Akatsuka, Mozilla Japan</a></div>
+            <div class="title">special thanks!</div>
+            <div class="description">
+            <div><a href="http://rayflood.org/diary-temp/">hATrayflood</a> : He ported to Windows!</div>
+        </li>
+            </div>
+    </ul>
+    <div id="footer">
+    Copyright © 2012 mecha-mozilla.org All rights reserved.
+    </div>
+</div>
+
+</body>
+</html>
