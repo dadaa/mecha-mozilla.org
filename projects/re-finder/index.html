@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>re-finder : Mecha-Mozilla</title>
+    <link rel="shortcut icon" href="images/favicon.ico"/>
+    <link rel="stylesheet" href="../css/style.css" type="text/css"/>
+    <link rel="stylesheet" href="http://mplus-fonts.sourceforge.jp/webfonts/mplus_webfonts.css" type="text/css" />
+</head>
+<body>
+
+
+<div id="container">
+    <div id="header"><a href="index.en.html">ENGLISH</a></div>
+    <div id="last-updated">last updated: 2012/05/25 created: 2012/05/25</div>
+    <div id="mecha-mozilla">
+        <a href="http://www.mecha-mozilla.org/">
+            <div id="mecha-mozilla-logo"></div>
+        </a>
+    </div>
+    <div>
+        <div id="title">re-finder</div>
+    </div>
+    <ul>
+        <li>
+            <div class="title">about</div>
+            <div class="description">
+            <p>
+現在のウェブブラウザでは、まだまだ伝えるのが難しいコトがあります。それは例えば、香りであったり、風であったり、温度であったり、触感であったり、実物大というサイズであったりさまざまです。本プロジェクトの大きな目的は、ブラウザの中だけでは伝えづらい事象を実世界に取り出して伝える試みを通して、ブラウザの可能性を探ることにあります。
+            </p>
+            <p>
+ウェブページにはさまざまな写真が点在しています。景色であったり人物であったり多様です。また被写体のみならず、そのカメラアングルも多様にあり、そこにカメラマンの意図を読み取ることができます。ところがブラウザの平面上ではそのアングルは想像に任せるしかありません。<br/>
+re-finder は、サーボとプロジェクタを組み合わせた可動式プロジェクタを作成し、これを用いてカメラアングルの再現をめざしています。例えば、見上げて撮った桜の花の写真はそのアングルと同じ角度で投影され、ファインダー越しの景色のように広がります。同じ角度で物事を見ることで、その時のカメラマンの意図やその閲覧体験を強化できるのではないかと考えています。
+            </p>
+                <div class="thumbnail">
+<video width="500" src="re-finder.theora.ogv" poster="thumbnail.jpg" controls></video>
+                </div>
+            </div>
+        </li>
+        <li>
+            <div class="title">implementation</div>
+            <div class="description">
+ハード面では、サーボを３つ組み合わせ、その先に小型のプロジェクタを配置しています。このサーボはそれぞれ、roll, pitch, yaw の役割を担います。<br/>
+ソフトウェアは、カメラアプリとリファインダアプリで構成されています。カメラアプリは、現在の <a href="http://ja.wikipedia.org/wiki/Exchangeable_image_file_format">exif</a> にはカメラの傾き roll, pitch, yaw のデータを取り扱う仕様となっていないため、これを UserComment として挿入するようにしたシンプルなモノで、現時点では iPhone アプリとして作成しています。カメラアプリで撮影した写真は好きなウェブページに配置することができます。リファインダアプリでは、写真から exif の UserComment を参照し、ここに傾きデータが存在していれば、それぞれのサーボにパルスを与え、カメラアングルの再現を試みています。
+            </div>
+        </li>
+        <li>
+            <div class="title">members</div>
+            <div class="description">
+            <div><a href="http://www.mecha-mozilla.org/">Mozilla Japan : 赤塚</a></div>
+            </div>
+            <div class="title">special thanks!</div>
+            <div class="description">
+            <div><a href="http://atocmoc.com/">アトリエオモヤ : 赤川智洋氏</a></div>
+            </div>
+        </li>
+    <div id="footer">
+    Copyright © 2012 mecha-mozilla.org All rights reserved.
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>re-finder : Mecha-Mozilla</title>
+    <link rel="shortcut icon" href="images/favicon.ico"/>
+    <link rel="stylesheet" href="../css/style.css" type="text/css"/>
+    <link rel="stylesheet" href="http://mplus-fonts.sourceforge.jp/webfonts/mplus_webfonts.css" type="text/css" />
+</head>
+<body class="en">
+
+
+<div id="container">
+    <div id="header"><a href="index.html">JAPANESE</a></div>
+    <div id="last-updated">last updated: 2012/05/25 created: 2012/04/29</div>
+    <div id="mecha-mozilla">
+        <a href="http://www.mecha-mozilla.org/index.en.html">
+            <div id="mecha-mozilla-logo"></div>
+        </a>
+    </div>
+    <div>
+        <div id="title">re-finder</div>
+    </div>
+    <ul>
+        <li>
+            <div class="title">about</div>
+            <div class="description">
+            <p>
+There are many things that the current web browser still cannot share today. For instance smell, wind, temperature, touch, actual sizes, and many other subjects cannot be shared. This project ultimately aims to explore the browser's possibilities by bringing out and sharing things from within the web which are difficult to share into the physical world.
+            </p>
+            <p>
+Various pictures are scattered throughout the Web. They can be sceneries, people, and many more. In addition,  besides what is being taken, each photo is taken from various angles, and each angle symbolizes the photographer's original intentions. However, the viewer can only imagine that angle from the flat image in the browser.
+<br/>
+The re-finder project creates a movable projector by  putting a projector and a servo together, in order to show the angle of the camera. For example, a picture of cherry blossom taken by looking up will be displayed from the same angle, as if it is the view from behind the camera. By seeing pictures in the same angle as it was taken, we think that we could improve sharing photographer's intentions and reliving the entire experience of taking pictures
+            </p>
+                <div class="thumbnail">
+<video width="500" src="re-finder.theora.ogv" poster="thumbnail.jpg" controls></video>
+                </div>
+            </div>
+        </li>
+        <li>
+            <div class="title">implementation</div>
+            <div class="description">
+The hard drive is constructed by 3 servos put together, and a small projector mounted on the tip. Each servo functions to operate the roll, the pitch, or the yaw.
+The software is constructed by putting a camera and a refinder application together. Because the current <a href="http://ja.wikipedia.org/wiki/Exchangeable_image_file_format">exif</a> format is not designed to be compatible with the roll, pitch, and yaw data of the photo's angle, we are currently building a simple iPhone application where the photographer specifies the data of the angle as UserComment. Pictures taken by the camera application can be placed in any web page. The refinder application refers to what is specified in the UserComment in the exif of the photo, giving each servo is a pulse, replicating the angle of the camera.
+            </div>
+        </li>
+        <li>
+            <div class="title">members</div>
+            <div class="description">
+            <div><a href="http://www.mecha-mozilla.org/">Daisuke Akatsuka, Mozilla Japan</a></div>
+            </div>
+            <div class="title">special thanks!</div>
+            <div class="description">
+            <div><a href="http://atocmoc.com/">Tomohiro Akagawa, Atelier OMOYA</a></div>
+            </div>
+        </li>
+    <div id="footer">
+    Copyright © 2012 mecha-mozilla.org All rights reserved.
+    </div>
+</div>
+
+</body>
+</html>
